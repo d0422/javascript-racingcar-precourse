@@ -12,11 +12,39 @@ export default class RacingCar {
     this.trySubmit.style.visibility = "hidden";
     this.carlistSubmit.addEventListener("click", () => {
       event.preventDefault();
-      console.log(this.carlistInput.value);
+      this.getCarList(this.carlistInput.value);
     });
     this.trySubmit.addEventListener("click", () => {
       event.preventDefault();
       console.log(this.tryInput.value);
     });
+  }
+  getCarList(carString) {
+    this.checkInputValue(carString);
+    this.showTry();
+  }
+  checkInputValue(carString) {
+    if (carString === "") {
+      this.showError();
+      return;
+    }
+    const carList = carString.split(",");
+    carList.forEach((car) => {
+      if (car.length > 5) {
+        this.showError();
+        return;
+      }
+      this.carLists.push(new Car(car));
+    });
+  }
+  showError() {
+    alert("입력오류입니다! 다시 입력해주세요!");
+    this.carlistInput.value = "";
+    this.tryInput.value = "";
+    this.carLists = [];
+  }
+  showTry() {
+    this.tryInput.style.visibility = "visible";
+    this.trySubmit.style.visibility = "visible";
   }
 }
