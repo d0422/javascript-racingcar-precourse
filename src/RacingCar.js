@@ -8,6 +8,8 @@ export default class RacingCar {
     this.tryInput = document.querySelector("#racing-count-input");
     this.trySubmit = document.querySelector("#racing-count-submit");
     this.winner = document.getElementById("racing-winners");
+    this.tryInput.style.visibility = "hidden";
+    this.trySubmit.style.visibility = "hidden";
     this.carlistSubmit.addEventListener("click", () => {
       event.preventDefault();
       console.log(this.carlistInput.value);
