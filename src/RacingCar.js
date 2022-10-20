@@ -8,8 +8,7 @@ export default class RacingCar {
     this.tryInput = document.querySelector("#racing-count-input");
     this.trySubmit = document.querySelector("#racing-count-submit");
     this.winner = document.getElementById("racing-winners");
-    this.tryInput.style.visibility = "hidden";
-    this.trySubmit.style.visibility = "hidden";
+    this.hideTry();
     this.carlistSubmit.addEventListener("click", () => {
       event.preventDefault();
       this.getCarList(this.carlistInput.value);
@@ -46,5 +45,20 @@ export default class RacingCar {
   showTry() {
     this.tryInput.style.visibility = "visible";
     this.trySubmit.style.visibility = "visible";
+  }
+  hideTry() {
+    this.tryInput.style.visibility = "hidden";
+    this.trySubmit.style.visibility = "hidden";
+  }
+  getTryNum(tryNumber) {
+    this.checkTryValue();
+  }
+  checkTryValue(tryNumber) {
+    if (tryNumber < 1) {
+      this.showError();
+      this.hideTry();
+    } else {
+      this.carLists.forEach();
+    }
   }
 }
