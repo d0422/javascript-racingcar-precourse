@@ -7,7 +7,6 @@ export default class RacingCar {
     this.carlistSubmit = document.querySelector("#car-names-submit");
     this.tryInput = document.querySelector("#racing-count-input");
     this.trySubmit = document.querySelector("#racing-count-submit");
-    this.winner = document.getElementById("racing-winners");
     this.hideTry();
     this.carlistSubmit.addEventListener("click", () => {
       event.preventDefault();
@@ -58,7 +57,35 @@ export default class RacingCar {
       this.showError();
       this.hideTry();
     } else {
-      this.carLists.forEach();
+      const divArray = [];
+      for (let x = 0; x < tryNumber; x++) {
+        divArray.push(this.startRace());
+      }
+      this.displayResult(divArray);
     }
+  }
+  startRace() {
+    const ResultDiv = document.createElement("div");
+    this.carLists.forEach((car) => {
+      car.start();
+      const div = this.makeHTML(car);
+      ResultDiv.appendChild(div);
+    });
+    ResultDiv.appendChild(document.createElement("br"));
+    return ResultDiv;
+  }
+  makeHTML(car) {
+    const ResultHTML = document.createElement("div");
+    ResultHTML.innerHTML = `${car.getName()}: ${car.getResult()}`;
+    return ResultHTML;
+  }
+  displayResult(divArray) {
+    const result = document.querySelector("#result");
+    const container = document.createElement("div");
+    container.appendChild(document.createElement("br"));
+    divArray.forEach((div) => {
+      container.appendChild(div);
+    });
+    result.after(container);
   }
 }
