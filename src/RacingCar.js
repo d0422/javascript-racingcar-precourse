@@ -107,4 +107,16 @@ export default class RacingCar {
     });
     return result;
   }
+  displayWinner(winnersArray) {
+    const winner = document.querySelector("#racing-winners");
+    let winnerString = "";
+    for (let x = 0; x < winnersArray.length; x++) {
+      if (x == winnersArray.length - 1) {
+        winnerString = winnerString + winnersArray[x];
+      } else {
+        winnerString = winnerString + winnersArray[x] + ", ";
+      }
+    }
+    winner.innerHTML = winnerString;
+  }
 }
