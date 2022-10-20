@@ -7,7 +7,7 @@ export default class Car {
   start() {
     const randomNumber = getRandomNumber();
     this.state = getState(this.state, randomNumber);
-    displayState();
+    this.changeResult();
   }
   getRandomNumber() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -18,5 +18,11 @@ export default class Car {
       state = state + 1;
     }
     return state;
+  }
+  changeResult() {
+    let x = 0;
+    for (x = 0; x < this.state; x++) {
+      this.result = this.result + "-";
+    }
   }
 }

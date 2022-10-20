@@ -15,7 +15,7 @@ export default class RacingCar {
     });
     this.trySubmit.addEventListener("click", () => {
       event.preventDefault();
-      console.log(this.tryInput.value);
+      this.checkTryValue(this.tryInput.value);
     });
   }
   getCarList(carString) {
