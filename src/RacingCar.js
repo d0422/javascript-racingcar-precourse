@@ -57,14 +57,19 @@ export default class RacingCar {
       this.showError();
       this.hideTry();
     } else {
-      const divArray = [];
-      for (let x = 0; x < tryNumber; x++) {
-        divArray.push(this.startRace());
-      }
-      this.displayResult(divArray);
+      this.startRace(tryNumber);
     }
   }
-  startRace() {
+  startRace(tryNumber) {
+    const divArray = [];
+    for (let x = 0; x < tryNumber; x++) {
+      divArray.push(this.getCarsHTML());
+    }
+    this.displayResult(divArray);
+    const winner = this.getWinner();
+    this.displayWinner(winner);
+  }
+  getCarsHTML() {
     const ResultDiv = document.createElement("div");
     this.carLists.forEach((car) => {
       car.start();
@@ -87,5 +92,19 @@ export default class RacingCar {
       container.appendChild(div);
     });
     result.after(container);
+  }
+  getWinner() {
+    let max = 0;
+    let result = [];
+    this.carLists.forEach((car) => {
+      if (max < car.state) {
+        result = [];
+        max = car.state;
+        result.push(car.name);
+      } else if (max === car.state) {
+        result.push(car.name);
+      }
+    });
+    return result;
   }
 }
